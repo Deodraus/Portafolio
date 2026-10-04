@@ -1,0 +1,242 @@
+@import "tailwindcss";
+
+/* Modo Real (Azules & Cianos Eléctricos) */
+.theme-real {
+  --neon-accent: #00d2ff;
+  --neon-accent-secondary: #3b82f6;
+  --neon-accent-hover: #38bdf8;
+  --neon-glow: rgba(0, 210, 255, 0.8);
+  --neon-glow-soft: rgba(0, 210, 255, 0.3);
+  --neon-bg-subtle: rgba(0, 210, 255, 0.08);
+  --neon-border: rgba(0, 210, 255, 0.3);
+  --neon-border-hover: rgba(0, 210, 255, 0.75);
+  --selection-bg: rgba(0, 210, 255, 0.3);
+  --selection-color: #00d2ff;
+}
+
+/* Modo Creador (Rosados, Magentas & Sakura Anime) */
+.theme-creator {
+  --neon-accent: #ff2a85;
+  --neon-accent-secondary: #f43f5e;
+  --neon-accent-hover: #ff5c9f;
+  --neon-glow: rgba(255, 42, 133, 0.85);
+  --neon-glow-soft: rgba(255, 42, 133, 0.35);
+  --neon-bg-subtle: rgba(255, 42, 133, 0.09);
+  --neon-border: rgba(255, 42, 133, 0.35);
+  --neon-border-hover: rgba(255, 42, 133, 0.8);
+  --selection-bg: rgba(255, 42, 133, 0.3);
+  --selection-color: #ff2a85;
+}
+
+:root {
+  --background: #080b0e;
+  --foreground: #eef4f8;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+html {
+  scroll-behavior: smooth;
+  color-scheme: dark;
+}
+
+body {
+  background-color: #080b0e;
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Dynamic theme classes that change automatically between Real (Blue) and Creator (Pink) */
+.text-neon-glow {
+  color: var(--neon-accent);
+  text-shadow: 0 0 16px var(--neon-glow), 0 0 38px var(--neon-glow-soft);
+  transition: color 0.4s ease, text-shadow 0.4s ease;
+}
+
+.text-neon-accent {
+  color: var(--neon-accent);
+  transition: color 0.4s ease;
+}
+
+.border-neon-subtle {
+  border-color: var(--neon-border) !important;
+  transition: border-color 0.4s ease;
+}
+
+.border-neon-hover:hover {
+  border-color: var(--neon-border-hover) !important;
+}
+
+.bg-neon-subtle {
+  background-color: var(--neon-bg-subtle) !important;
+  transition: background-color 0.4s ease;
+}
+
+.btn-neon-pill {
+  background-color: var(--neon-accent) !important;
+  color: #080b0e !important;
+  font-weight: 700;
+  box-shadow: 0 0 25px var(--neon-glow);
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-neon-pill:hover {
+  background-color: var(--neon-accent-hover) !important;
+  box-shadow: 0 0 40px var(--neon-glow);
+  transform: translateY(-2px);
+}
+
+.avatar-neon-halo {
+  border-color: var(--neon-accent) !important;
+  box-shadow: 0 0 55px var(--neon-glow), 0 0 110px var(--neon-glow-soft);
+  transition: border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* Floating geometric shapes matching reference */
+.floating-shape-ring {
+  border-color: var(--neon-border);
+  background-color: var(--neon-bg-subtle);
+  box-shadow: 0 0 16px var(--neon-glow-soft);
+  transition: border-color 0.4s ease, background-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.floating-shape-triangle {
+  border-bottom-color: var(--neon-border);
+  filter: drop-shadow(0 0 8px var(--neon-glow-soft));
+  transition: border-bottom-color 0.4s ease, filter 0.4s ease;
+}
+
+@keyframes floatUp {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-16px) rotate(6deg);
+  }
+}
+
+@keyframes floatDown {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(14px) rotate(-8deg);
+  }
+}
+
+.animate-float-1 {
+  animation: floatUp 6s ease-in-out infinite;
+}
+
+.animate-float-2 {
+  animation: floatDown 7s ease-in-out infinite;
+}
+
+.animate-float-3 {
+  animation: floatUp 8.5s ease-in-out infinite;
+}
+
+/* Custom scrollbar matching active theme */
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: #080b0e;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #152228;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--neon-accent);
+}
+
+/* Patrones de cuadrícula y puntos estilo Vercel / Linear (svgbackgrounds.com inspiration) */
+.bg-grid-pattern {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+}
+
+.bg-dots-pattern {
+  background-size: 24px 24px;
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.08) 1.2px, transparent 1.2px);
+}
+
+.radial-fade-mask {
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, #000 50%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, #000 50%, transparent 100%);
+}
+
+/* Gradientes de malla suaves inspirados en Meshgradient.in y CSS Hero */
+.theme-real .mesh-gradient-ambient {
+  background: 
+    radial-gradient(circle at 15% 20%, rgba(0, 210, 255, 0.12) 0%, transparent 45%),
+    radial-gradient(circle at 85% 15%, rgba(59, 130, 246, 0.12) 0%, transparent 45%),
+    radial-gradient(circle at 50% 80%, rgba(14, 165, 233, 0.08) 0%, transparent 55%),
+    radial-gradient(circle at 80% 85%, rgba(2, 132, 199, 0.09) 0%, transparent 50%);
+}
+
+.theme-creator .mesh-gradient-ambient {
+  background: 
+    radial-gradient(circle at 15% 20%, rgba(255, 42, 133, 0.15) 0%, transparent 45%),
+    radial-gradient(circle at 85% 15%, rgba(244, 63, 94, 0.13) 0%, transparent 45%),
+    radial-gradient(circle at 50% 80%, rgba(217, 70, 239, 0.09) 0%, transparent 55%),
+    radial-gradient(circle at 80% 85%, rgba(236, 72, 153, 0.12) 0%, transparent 50%);
+}
+
+/* Pill badges con estilo fiel a demostracion.png */
+.badge-pill-demo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: 9999px;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  background-color: rgba(12, 16, 21, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: #e2e8f0;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35);
+  transition: all 0.25s ease;
+}
+
+.badge-pill-demo:hover {
+  border-color: var(--neon-accent);
+  color: #ffffff;
+  box-shadow: 0 0 15px var(--neon-glow-soft);
+  transform: translateY(-1px);
+}
+
+.badge-pill-demo.active {
+  border-color: var(--neon-accent);
+  background-color: var(--neon-bg-subtle);
+  color: var(--neon-accent);
+  box-shadow: 0 0 18px var(--neon-glow-soft);
+}
+
+/* Shimmer de reflejo en pantalla de dispositivo */
+.screen-sheen {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.08) 0%,
+    rgba(255, 255, 255, 0.02) 40%,
+    transparent 60%
+  );
+  pointer-events: none;
+}
