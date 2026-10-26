@@ -14,13 +14,13 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://jeronimodeossa.dev"),
-  title: "Jerónimo Deossa Abad (Deodraus) | Desarrollador de Software & Creador",
+  title: "Jerónimo Deossa Abad | Desarrollador de Software",
   description:
-    "Portafolio profesional de Jerónimo Deossa Abad (Deodraus). Técnico Laboral en Desarrollo de Software, Frontend II, Backend II, IA y Creador de Contenido en Medellín, Colombia.",
+    "Portafolio profesional de Jerónimo Deossa Abad. Técnico Laboral en Desarrollo de Software, Frontend II, Backend II e Inteligencia Artificial en Medellín, Colombia.",
   keywords: [
     "Jerónimo Deossa Abad",
-    "Deodraus",
     "Desarrollador de Software",
+    "Software Developer",
     "Frontend Developer",
     "Backend Developer",
     "Medellín",
@@ -32,8 +32,8 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Jerónimo Deossa Abad" }],
   openGraph: {
-    title: "Jerónimo Deossa Abad (Deodraus) | Portafolio Personal",
-    description: "Desarrollador de Software & Creador de Contenido en Medellín, Colombia.",
+    title: "Jerónimo Deossa Abad | Desarrollador de Software",
+    description: "Desarrollador de Software en Medellín, Colombia.",
     images: ["/img/photojeronimo.jpeg"],
     type: "website"
   }
@@ -46,7 +46,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" className={`${geistSans.variable} ${geistMono.variable} scroll-smooth dark`}>
-      <body className="min-h-screen bg-[#080b0e] text-[#eef4f8] antialiased selection:bg-[#00f5b8]/30 selection:text-[#00f5b8] font-sans">
+      <body className="min-h-screen bg-black text-[#eef4f8] antialiased selection:bg-[#3b82f6]/30 selection:text-[#38bdf8] font-sans">
         {children}
       </body>
     </html>

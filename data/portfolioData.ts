@@ -71,25 +71,18 @@ export interface PortfolioData {
   personal: {
     fullName: string;
     firstName: string;
-    artisticName: string;
-    roles: {
-      dev: string;
-      creator: string;
-      combined: string;
-    };
+    lastName: string;
+    initials: string;
+    role: string;
     location: string;
     phone: string;
     phoneUrl: string;
     email: string;
     avatarReal: string;
-    avatarArtistic: string;
-    summaryDev: string;
-    summaryCreator: string;
+    heroQuote: string;
+    summary: string;
     vision: string;
-    socials: {
-      dev: SocialLink[];
-      creator: SocialLink[];
-    };
+    socials: SocialLink[];
   };
   education: EducationItem[];
   projects: Project[];
@@ -103,85 +96,42 @@ export const portfolioData: PortfolioData = {
   personal: {
     fullName: "Jerónimo Deossa Abad",
     firstName: "Jerónimo",
-    artisticName: "Deodraus",
-    roles: {
-      dev: "Desarrollador de Software",
-      creator: "Creador de Contenido & Streamer",
-      combined: "Desarrollador de Software & Creador de Contenido"
-    },
+    lastName: "Deossa Abad",
+    initials: "JDA",
+    role: "Desarrollador de Software",
     location: "Medellín, Antioquia, Colombia",
     phone: "+57 300 205 5624",
     phoneUrl: "https://wa.me/573002055624",
     email: "jeronimodeossaabad@gmail.com",
     avatarReal: "/img/photojeronimo.jpeg",
-    avatarArtistic: "/img/photodeodraus.jpeg",
-    summaryDev:
-      "Soy desarrollador de software y creador de contenido de Medellín. Me enfoco en crear páginas web limpias, modernas y fáciles de usar, conectar bases de datos y resolver problemas con código funcional. También edito fotos y videos, modelo avatares 3D y me gusta aprender constantemente para trabajar en equipo.",
-    summaryCreator:
-      "Bajo mi identidad como Deodraus, hago streams de videojuegos, reflexiono sobre situaciones que vivimos los jóvenes en el día a día y creo contenido digital con una comunidad cercana. Me encanta combinar la creatividad del dibujo anime y el modelado 3D con la buena vibra.",
+    heroQuote:
+      "\"Como Desarrollador de Software dedicado, me apasiona el arte de programar y la ciencia de resolver problemas. Con una sólida base técnica en desarrollo web, bases de datos e inteligencia artificial, y un enfoque creativo, disfruto transformar ideas complejas en soluciones de software elegantes y funcionales. Bienvenido a mi portafolio, donde puedes explorar mi recorrido convirtiendo ideas en realidad digital.\"",
+    summary:
+      "Soy Desarrollador de Software en Medellín, Colombia. Me enfoco en construir aplicaciones web limpias, modernas y fáciles de usar, conectar bases de datos relacionales y desarrollar herramientas con inteligencia artificial. Combino la lógica de programación con la creatividad visual y el aprendizaje constante.",
     vision:
-      "Creo que la tecnología es genial, pero es mucho mejor cuando se combina con creatividad, buena energía y una comunicación honesta y transparente.",
-    socials: {
-      dev: [
-        {
-          platform: "GitHub",
-          url: "https://github.com/Deodraus",
-          icon: "github"
-        },
-        {
-          platform: "WhatsApp",
-          url: "https://wa.me/573002055624",
-          icon: "whatsapp"
-        },
-        {
-          platform: "X (Twitter)",
-          url: "https://x.com/deodraus",
-          icon: "x"
-        },
-        {
-          platform: "Instagram",
-          url: "https://instagram.com/deodraus?igsh=MWV2czJub3JwNDVtdg==",
-          icon: "instagram"
-        },
-        {
-          platform: "Twitch",
-          url: "https://twitch.tv/deodraus",
-          icon: "twitch"
-        }
-      ],
-      creator: [
-        {
-          platform: "Twitch",
-          url: "https://twitch.tv/deodraus",
-          icon: "twitch"
-        },
-        {
-          platform: "Kick",
-          url: "https://kick.com/deodraus",
-          icon: "kick"
-        },
-        {
-          platform: "TikTok",
-          url: "https://tiktok.com/@deodraus?_r=1&_t=ZS-9AGVI9rYYcv",
-          icon: "tiktok"
-        },
-        {
-          platform: "Instagram",
-          url: "https://instagram.com/deodraus?igsh=MWV2czJub3JwNDVtdg==",
-          icon: "instagram"
-        },
-        {
-          platform: "X",
-          url: "https://x.com/deodraus",
-          icon: "x"
-        },
-        {
-          platform: "WhatsApp",
-          url: "https://wa.me/573002055624",
-          icon: "whatsapp"
-        }
-      ]
-    }
+      "Transformar ideas en soluciones tecnológicas funcionales y bien estructuradas mediante código limpio, resolución práctica de problemas y comunicación asertiva en equipo.",
+    socials: [
+      {
+        platform: "Instagram",
+        url: "https://instagram.com/deodraus?igsh=MWV2czJub3JwNDVtdg==",
+        icon: "instagram"
+      },
+      {
+        platform: "GitHub",
+        url: "https://github.com/Deodraus",
+        icon: "github"
+      },
+      {
+        platform: "WhatsApp",
+        url: "https://wa.me/573002055624",
+        icon: "whatsapp"
+      },
+      {
+        platform: "X (Twitter)",
+        url: "https://x.com/deodraus",
+        icon: "x"
+      }
+    ]
   },
 
   education: [
@@ -299,7 +249,7 @@ export const portfolioData: PortfolioData = {
       description:
         "Aplicación de escritorio en Python que reúne un asistente inteligente conectado a Google Gemini API, una mascota virtual interactiva con sprites animados y una calculadora para resolver y graficar funciones matemáticas. Desarrollada exclusivamente para computadores de escritorio.",
       problemSolved:
-        "Une la utilidad de la inteligencia artificial con una presencia visual divertida y una herramienta de cálculo gráfico para estudiantes y programadores en su estación de trabajo.",
+        "Une la utilidad de la inteligencia artificial con una presencia visual interactiva y una herramienta de cálculo gráfico para estudiantes y programadores en su estación de trabajo.",
       keyFeatures: [
         "Respuestas y asistencia inteligente con la API de Google Gemini",
         "Mascota virtual con animaciones en tiempo real en la pantalla",
@@ -310,7 +260,7 @@ export const portfolioData: PortfolioData = {
       hasMobileSupport: false,
       screenshots: [
         {
-          url: "/img/MiAsistente.png",
+          url: "/img/miasistente.png",
           title: "MiAsistente: IA Gemini & Mascota Virtual (PC)",
           caption: "Aplicación de escritorio con asistente conversacional inteligente y mascota interactiva.",
           badge: "PC • Exclusivo Escritorio"
@@ -393,7 +343,7 @@ export const portfolioData: PortfolioData = {
       name: "CSS3",
       icon: "/tech/css.svg",
       category: "Frontend",
-      desc: "Diseño visual, Flexbox, CSS Grid, gradientes de malla, animaciones y compatibilidad.",
+      desc: "Diseño visual, Flexbox, CSS Grid, animaciones fluidas y diseño responsivo.",
       level: "Avanzado"
     },
     {
@@ -481,7 +431,7 @@ export const portfolioData: PortfolioData = {
       name: "Tailwind CSS",
       icon: "/tech/tailwind.svg",
       category: "Frontend",
-      desc: "Estilos utility-first, diseño responsivo, personalización de paletas azul/rosa y modo oscuro.",
+      desc: "Estilos utility-first, diseño responsivo, personalización de paletas azules y modo oscuro.",
       level: "Avanzado"
     },
     {
@@ -505,7 +455,7 @@ export const portfolioData: PortfolioData = {
   technicalSkills: [
     {
       title: "Desarrollo Frontend",
-      description: "Páginas web rápidas, modernas y que se adaptan a cualquier dispositivo.",
+      description: "Interfaces web rápidas, modernas y adaptables a cualquier pantalla.",
       skills: [
         { name: "Frontend II", note: "Especialización técnica" },
         { name: "React & Next.js", note: "Componentes modernos" },
@@ -527,7 +477,7 @@ export const portfolioData: PortfolioData = {
     },
     {
       title: "Metodologías & Lógica",
-      description: "Organización y buenas prácticas para crear software ordenado.",
+      description: "Organización y buenas prácticas para crear software ordenado y escalable.",
       skills: [
         { name: "Metodologías Ágiles", note: "Scrum y trabajo en equipo" },
         { name: "Lógica de Programación", note: "Resolución de problemas" },
@@ -536,82 +486,82 @@ export const portfolioData: PortfolioData = {
       ]
     },
     {
-      title: "Creatividad & Multimedia",
-      description: "Habilidades visuales que le dan identidad y personalidad a mis proyectos.",
+      title: "Diseño & Multimedia",
+      description: "Habilidades visuales complementarias que enriquecen la experiencia de usuario.",
       skills: [
-        { name: "Avatares Vtubers 3D", note: "Modelado digital" },
-        { name: "Dibujo Estilo Anime", note: "Personajes y proporciones" },
+        { name: "Modelado 3D", note: "Diseño de activos digitales" },
+        { name: "Ilustración & Dibujo Técnico", note: "Proporciones y estética" },
         { name: "Edición de Fotos y Video", note: "Producción audiovisual" },
-        { name: "Streaming en Vivo", note: "Transmisiones y comunidad" }
+        { name: "Comunicación Digital", note: "Presentación de proyectos" }
       ]
     }
   ],
 
   softSkills: [
-    { name: "Comunicación Asertiva", desc: "Explico ideas de forma clara, directa y empática a cualquier persona." },
-    { name: "Creatividad", desc: "Aporto soluciones originales combinando tecnología y arte visual." },
-    { name: "Transparencia", desc: "Hablo con honestidad sobre avances, tiempos y compromisos." },
-    { name: "Criterio Realista", desc: "Me enfoco en entregar cosas que de verdad funcionen y sirvan." },
-    { name: "Amabilidad y Empatía", desc: "Trato respetuoso y disposición constante para escuchar y colaborar." },
-    { name: "Pensamiento Lógico", desc: "Divido problemas grandes en pasos ordenados para resolverlos." },
-    { name: "Eficiencia", desc: "Aprovecho el tiempo al máximo priorizando lo más importante." },
-    { name: "Trabajo en Equipo", desc: "Me integro con facilidad y apoyo a mis compañeros para cumplir metas." }
+    { name: "Comunicación Asertiva", desc: "Explico ideas técnicas de forma clara, directa y empática a cualquier persona." },
+    { name: "Creatividad", desc: "Aporto soluciones originales combinando ingeniería de software y diseño visual." },
+    { name: "Transparencia", desc: "Hablo con honestidad sobre avances, tiempos y compromisos del proyecto." },
+    { name: "Criterio Realista", desc: "Me enfoco en entregar software funcional que resuelva necesidades reales." },
+    { name: "Amabilidad y Empatía", desc: "Trato respetuoso y disposición constante para escuchar y colaborar en equipo." },
+    { name: "Pensamiento Lógico", desc: "Divido problemas complejos en pasos ordenados y estructurados para resolverlos." },
+    { name: "Eficiencia", desc: "Aprovecho el tiempo al máximo priorizando las tareas de mayor impacto." },
+    { name: "Trabajo en Equipo", desc: "Me integro con facilidad en entornos ágiles y apoyo a mis compañeros." }
   ],
 
   hobbies: [
     {
       id: 1,
       title: "Tocar Guitarra",
-      contribution: "Me enseña paciencia y disciplina. Sacar una canción nota por nota es igual a revisar código: requiere ritmo, calma y práctica constante.",
+      contribution: "Fortalece la paciencia y la disciplina. Dominar una pieza musical nota por nota requiere la misma constancia y precisión que depurar código.",
       category: "Música & Arte",
       iconName: "Music"
     },
     {
       id: 2,
-      title: "Dibujar Estilo Anime",
-      contribution: "Desarrolla mi ojo para el detalle visual, los colores, la estética y las proporciones, lo que enriquece el diseño de interfaces web.",
+      title: "Ilustración y Dibujo",
+      contribution: "Desarrolla el ojo para el detalle visual, el contraste, la composición y las proporciones en el diseño de interfaces Frontend.",
       category: "Música & Arte",
       iconName: "Palette"
     },
     {
       id: 3,
       title: "Crear Proyectos Personales",
-      contribution: "Alimenta mi iniciativa y autonomía para no quedarme solo con la teoría, sino inventar herramientas que resuelvan necesidades reales.",
+      contribution: "Impulsa mi autonomía e iniciativa para llevar la teoría a la práctica construyendo herramientas que resuelven problemas reales.",
       category: "Tecnología",
       iconName: "Code2"
     },
     {
       id: 4,
-      title: "Grabar y Editar Videos",
-      contribution: "Me da agilidad para contar historias, resumir ideas y comunicar mensajes claros de forma atractiva en medios digitales.",
+      title: "Producción y Edición de Video",
+      contribution: "Aporta agilidad para estructurar presentaciones, sintetizar ideas complejas y comunicar el valor de un producto digital.",
       category: "Audiovisual",
       iconName: "Video"
     },
     {
       id: 5,
-      title: "Hacer Streams en Vivo",
-      contribution: "Me entrena para comunicarme con espontaneidad y confianza frente al público, escuchar a la comunidad y resolver imprevistos en tiempo real.",
+      title: "Comunicación en Vivo",
+      contribution: "Entrena la fluidez verbal, la seguridad al hablar en público y la capacidad de resolver imprevistos en tiempo real.",
       category: "Audiovisual",
       iconName: "Radio"
     },
     {
       id: 6,
-      title: "Jugar Videojuegos",
-      contribution: "Ejercita el pensamiento estratégico, la adaptabilidad rápida a nuevas reglas y una comprensión natural de la interactividad y gamificación.",
+      title: "Videojuegos de Estrategia",
+      contribution: "Ejercita la toma de decisiones bajo presión, la adaptabilidad rápida y la comprensión profunda de la experiencia de usuario (UX).",
       category: "Estrategia",
       iconName: "Gamepad2"
     },
     {
       id: 7,
-      title: "Ver Series y Películas",
-      contribution: "Nutre mi imaginación con nuevas perspectivas narrativas y visuales que inspiran proyectos digitales con impacto emocional.",
+      title: "Cine y Narrativa Audiovisual",
+      contribution: "Amplía mi perspectiva creativa y atención a los detalles estéticos que hacen memorable un producto interactivo.",
       category: "Estrategia",
       iconName: "Film"
     },
     {
       id: 8,
-      title: "Estudiar Programación & Nuevas Habilidades",
-      contribution: "Mantiene viva mi mentalidad de aprendizaje autodidacta y adaptación inmediata al cambio constante de la industria tecnológica.",
+      title: "Estudio Autodidacta de Programación",
+      contribution: "Mantiene activa mi actualización continua en nuevos lenguajes, arquitecturas y herramientas del ecosistema tecnológico.",
       category: "Tecnología",
       iconName: "GraduationCap"
     }
