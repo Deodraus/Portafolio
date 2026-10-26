@@ -48,17 +48,18 @@ export default function SkillsSection() {
   };
 
   return (
-    <section id="habilidades" className="py-20 md:py-28 relative z-10 border-t border-neon-subtle">
-      <div className="mx-auto max-w-7xl px-6 sm:px-10">
+    <section id="habilidades" className="py-20 md:py-28 relative z-10 border-t border-[#3b82f6]/20 bg-black">
+      <div className="mx-auto max-w-7xl px-6 sm:px-12">
         
-        {/* Header matching demostracion.png aesthetic */}
+        {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-14">
-          <div className="inline-flex items-center gap-2 rounded-full border border-neon-subtle bg-neon-subtle px-3.5 py-1 text-xs font-mono text-neon-accent mb-3">
+          <div className="inline-flex items-center gap-2 rounded-full border border-[#3b82f6]/35 bg-[#3b82f6]/10 px-3.5 py-1 text-xs font-mono text-[#38bdf8] mb-3">
             <Terminal className="h-3.5 w-3.5" />
             Stack Tecnológico & Habilidades
           </div>
           <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white">
-            Lenguajes & <span className="text-neon-glow">Tecnologías</span>
+            Lenguajes &{" "}
+            <span className="text-[#3b82f6]">Tecnologías</span>
           </h2>
           <p className="mt-3 text-base sm:text-lg text-slate-300">
             Los 16 lenguajes y herramientas oficiales que empleo en mis proyectos de software y plataformas digitales.

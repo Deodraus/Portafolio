@@ -182,3 +182,24 @@ Este archivo contiene el historial cronológico e inmutable de todos los cambios
 
 ### 4. Verificación de Compilación
 - Ejecución de `npm run build` finalizada con éxito (`0 errors, 0 warnings`, generación estática completada).
+
+
+---
+
+## [2026-10-25] - Rediseño Fiel a Imagen Adjunta, Eliminación de Identidad Dual y Paleta Azul
+
+### 1. Eliminación Completa de la Identidad Dual
+- **Acción:** Se eliminó por completo el conmutador de modos (`Modo Real` / `Modo Creador`), la paleta rosa (`.theme-creator`) y las referencias a la identidad secundaria en `app/page.tsx`, `app/layout.tsx`, `app/globals.css`, `data/portfolioData.ts`, `Navbar.tsx`, `Hero.tsx`, `AboutMe.tsx`, `DeviceMockupViewer.tsx` y `Footer.tsx`.
+- **Resultado:** El portafolio presenta exclusivamente la identidad real y profesional de **Jerónimo Deossa Abad** como **Desarrollador de Software**.
+
+### 2. Implementación del Diseño Adjuntado con Colores Azules
+- **Fondo y Paleta:** Fondo negro puro (`#000000`) minimalista conservando los tonos azules (`#3b82f6` azul eléctrico principal y `#38bdf8` azul cielo/cian secundario).
+- **Navbar (`components/Navbar.tsx`):** Emblema monograma vectorial `JDA` con destello geométrico en la esquina superior izquierda y navegación limpia en texto a la derecha (`Inicio`, `Sobre Mí`, `Educación`, `Habilidades`, `Portafolio`, `Hobbies`, `Contacto`).
+- **Hero (`components/Hero.tsx`):**
+  - Título en dos líneas y dos tonos: `Hola, soy ` (blanco) + `Jerónimo` (azul `#3b82f6`) en la primera línea, y `Deossa Abad` (azul cielo `#38bdf8`) en la segunda línea.
+  - Subtítulo dinámico `Desarrollador de Software` con cursor vertical parpadeante `|`.
+  - Párrafo descriptivo entre comillas fiel a la composición de referencia.
+  - Fila de botones rectangulares (`Contrátame` sólido en azul y `MI CV` delineado en azul) acompañada del botón de altavoz interactivo (`SpeechSynthesis`).
+  - Fila inferior izquierda de iconos sociales circulares con borde azul.
+- **Retrato Tipográfico en Código (`components/CodePortrait.tsx`):**
+  - Procesamiento en `<canvas>` de `photojeronimo.jpeg` para generar el retrato de alto contraste emergiendo del fondo negro mediante líneas de código fuente, con botón opcional para alternar a la fotografía original.

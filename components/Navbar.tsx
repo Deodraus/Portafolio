@@ -1,149 +1,194 @@
 "use client";
 
-import { useState } from "react";
-import { portfolioData } from "@/data/portfolioData";
-import { Menu, X, Sparkles, Terminal } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Menu, X } from "lucide-react";
 
-interface NavbarProps {
-  currentPersona: "dev" | "creator";
-  setPersona: (persona: "dev" | "creator") => void;
-}
-
-export default function Navbar({ currentPersona, setPersona }: NavbarProps) {
+export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("inicio");
-  const isDev = currentPersona === "dev";
 
   const navLinks = [
     { name: "Inicio", id: "inicio", href: "#inicio" },
     { name: "Sobre Mí", id: "sobre-mi", href: "#sobre-mi" },
-    { name: "Proyectos", id: "proyectos", href: "#proyectos" },
+    { name: "Educación", id: "educacion", href: "#educacion" },
     { name: "Habilidades", id: "habilidades", href: "#habilidades" },
+    { name: "Portafolio", id: "portafolio", href: "#portafolio" },
     { name: "Hobbies", id: "hobbies", href: "#hobbies" },
     { name: "Contacto", id: "contacto", href: "#contacto" },
   ];
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY + 200;
+      for (const link of navLinks) {
+        const element = document.getElementById(link.id);
+        if (element) {
+          const top = element.offsetTop;
+          const height = element.offsetHeight;
+          if (scrollPosition >= top && scrollPosition < top + height) {
+            setActiveSection(link.id);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <header className="sticky top-0 z-50 w-full bg-[#080b0e]/90 backdrop-blur-md transition-colors duration-500 border-b border-neon-subtle">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 sm:px-10 h-20">
-        
-        {/* Brand Logo with Neon Glow */}
-        <a href="#inicio" className="group flex items-center gap-2">
-          <span className="text-2xl font-extrabold tracking-tight text-neon-glow transition-all duration-300 group-hover:scale-105">
-            Portfolio
-          </span>
-          <span className="text-xs font-mono text-slate-400 hidden sm:inline-block">
-            / {isDev ? "Modo Real (Jerónimo)" : "Modo Creador (Deodraus)"}
-          </span>
+    <header className="sticky top-0 z-50 w-full bg-black/90 backdrop-blur-md">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 sm:px-12 h-24">
+        {/* Emblem Monogram Logo (JDA) inspired by the RSR emblem in the reference design */}
+        <a
+          href="#inicio"
+          onClick={() => setActiveSection("inicio")}
+          className="group relative flex items-center justify-center focus:outline-none"
+          aria-label="Jerónimo Deossa Abad - Inicio"
+        >
+          <svg
+            viewBox="0 0 120 90"
+            className="h-16 w-20 sm:h-[72px] sm:w-24 transition-transform duration-300 group-hover:scale-105"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <defs>
+              <linearGradient id="jdaTextGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#93c5fd" />
+                <stop offset="45%" stopColor="#38bdf8" />
+                <stop offset="100%" stopColor="#2563eb" />
+              </linearGradient>
+              <linearGradient id="jdaStrokeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.9" />
+                <stop offset="50%" stopColor="#38bdf8" stopOpacity="1" />
+                <stop offset="100%" stopColor="#1d4ed8" stopOpacity="0.9" />
+              </linearGradient>
+              <radialGradient id="jdaGlow" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.45" />
+                <stop offset="60%" stopColor="#0284c7" stopOpacity="0.15" />
+                <stop offset="100%" stopColor="#000000" stopOpacity="0" />
+              </radialGradient>
+            </defs>
+
+            {/* Ambient Blue Emblem Aura */}
+            <circle cx="60" cy="45" r="40" fill="url(#jdaGlow)" />
+
+            {/* Geometric Starburst / Cross Lines matching the reference logo */}
+            <line x1="20" y1="12" x2="100" y2="78" stroke="url(#jdaStrokeGrad)" strokeWidth="1.4" strokeOpacity="0.7" />
+            <line x1="100" y1="12" x2="20" y2="78" stroke="url(#jdaStrokeGrad)" strokeWidth="1.4" strokeOpacity="0.7" />
+            <line x1="60" y1="5" x2="60" y2="85" stroke="#38bdf8" strokeWidth="1" strokeOpacity="0.4" />
+            <line x1="12" y1="45" x2="108" y2="45" stroke="#3b82f6" strokeWidth="1" strokeOpacity="0.4" />
+
+            {/* Outer Broken Cyber Ring */}
+            <circle
+              cx="60"
+              cy="45"
+              r="28"
+              stroke="url(#jdaStrokeGrad)"
+              strokeWidth="1.8"
+              strokeDasharray="36 10 20 10"
+            />
+            <polygon
+              points="60,13 90,30 90,60 60,77 30,60 30,30"
+              stroke="#38bdf8"
+              strokeWidth="1"
+              strokeOpacity="0.45"
+              fill="rgba(3, 7, 18, 0.55)"
+            />
+
+            {/* 3D Extruded Shadow Layer */}
+            <text
+              x="62"
+              y="55"
+              textAnchor="middle"
+              fill="#0f172a"
+              stroke="#1e3a8a"
+              strokeWidth="3"
+              fontFamily="system-ui, sans-serif"
+              fontWeight="900"
+              fontSize="28"
+              letterSpacing="1"
+            >
+              JDA
+            </text>
+
+            {/* Main Metallic Blue/Cyan Monogram Letters */}
+            <text
+              x="60"
+              y="53"
+              textAnchor="middle"
+              fill="url(#jdaTextGrad)"
+              stroke="#e0f2fe"
+              strokeWidth="0.6"
+              fontFamily="system-ui, sans-serif"
+              fontWeight="900"
+              fontSize="28"
+              letterSpacing="1"
+            >
+              JDA
+            </text>
+          </svg>
         </a>
 
         {/* Desktop Navigation Links matching the reference screenshot */}
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden md:flex items-center gap-8 lg:gap-10">
           {navLinks.map((link) => {
             const isActive = activeSection === link.id;
             return (
               <a
-                key={link.name}
+                key={link.id}
                 href={link.href}
                 onClick={() => setActiveSection(link.id)}
-                className={`relative text-sm font-semibold transition-colors duration-200 ${
+                className={`text-[15px] font-medium tracking-wide transition-colors duration-200 ${
                   isActive
-                    ? "text-neon-accent"
-                    : "text-slate-300 hover:text-white"
+                    ? "text-[#3b82f6] font-semibold"
+                    : "text-white hover:text-[#38bdf8]"
                 }`}
               >
-                <span>{link.name}</span>
-                {isActive && (
-                  <span
-                    className="absolute -bottom-1.5 left-0 right-0 h-[2.5px] rounded-full transition-colors duration-500"
-                    style={{ backgroundColor: "var(--neon-accent)", boxShadow: "0 0 10px var(--neon-accent)" }}
-                  />
-                )}
+                {link.name}
               </a>
             );
           })}
         </nav>
 
-        {/* Mode switcher: Modo Real (Azul) vs Modo Creador (Rosa) */}
-        <div className="hidden sm:flex items-center gap-3">
-          <div className="flex items-center rounded-full p-1 bg-[#0c1015] border border-neon-subtle shadow-md">
-            <button
-              onClick={() => setPersona("dev")}
-              className={`flex items-center gap-1.5 px-3 py-1 text-xs font-bold rounded-full transition-all duration-300 ${
-                isDev
-                  ? "bg-[#00d2ff] text-slate-950 shadow-[0_0_15px_rgba(0,210,255,0.6)]"
-                  : "text-slate-400 hover:text-white"
-              }`}
-            >
-              <Terminal className="h-3.5 w-3.5" />
-              <span>Modo Real (Azul)</span>
-            </button>
-            <button
-              onClick={() => setPersona("creator")}
-              className={`flex items-center gap-1.5 px-3 py-1 text-xs font-bold rounded-full transition-all duration-300 ${
-                !isDev
-                  ? "bg-[#ff2a85] text-white shadow-[0_0_15px_rgba(255,42,133,0.6)]"
-                  : "text-slate-400 hover:text-white"
-              }`}
-            >
-              <Sparkles className="h-3.5 w-3.5" />
-              <span>Modo Creador (Rosa)</span>
-            </button>
-          </div>
-        </div>
-
-        {/* Mobile menu trigger */}
-        <div className="flex items-center gap-2 md:hidden">
-          <button
-            onClick={() => setPersona(isDev ? "creator" : "dev")}
-            className="px-2.5 py-1 rounded-full border border-neon-subtle text-xs text-neon-accent font-bold"
-          >
-            {isDev ? "💙 Real" : "💖 Creador"}
-          </button>
+        {/* Mobile Menu Trigger */}
+        <div className="flex items-center md:hidden">
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="rounded-lg p-2 text-slate-300 hover:text-neon-accent"
-            aria-label="Abrir menú"
+            className="rounded-lg p-2 text-white hover:text-[#38bdf8] transition-colors"
+            aria-label="Abrir menú de navegación"
           >
-            {mobileMenuOpen ? <X className="h-6 w-6 text-neon-accent" /> : <Menu className="h-6 w-6" />}
+            {mobileMenuOpen ? (
+              <X className="h-6 w-6 text-[#3b82f6]" />
+            ) : (
+              <Menu className="h-6 w-6" />
+            )}
           </button>
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu Dropdown */}
       {mobileMenuOpen && (
-        <div className="border-b border-neon-subtle bg-[#080b0e]/95 px-6 pt-2 pb-6 md:hidden">
+        <div className="border-b border-[#3b82f6]/20 bg-black/95 px-6 pt-2 pb-6 md:hidden">
           <div className="flex flex-col gap-3">
             {navLinks.map((link) => (
               <a
-                key={link.name}
+                key={link.id}
                 href={link.href}
                 onClick={() => {
                   setActiveSection(link.id);
                   setMobileMenuOpen(false);
                 }}
-                className={`py-2 text-base font-medium ${
+                className={`py-2 text-base transition-colors ${
                   activeSection === link.id
-                    ? "text-neon-accent font-bold"
-                    : "text-slate-300 hover:text-white"
+                    ? "text-[#3b82f6] font-bold"
+                    : "text-white hover:text-[#38bdf8]"
                 }`}
               >
                 {link.name}
               </a>
             ))}
-            <div className="pt-3 border-t border-neon-subtle flex justify-between items-center">
-              <span className="text-xs text-slate-400">Cambiar tema:</span>
-              <button
-                onClick={() => setPersona(isDev ? "creator" : "dev")}
-                className="px-3 py-1 rounded-full text-xs font-bold"
-                style={{
-                  backgroundColor: isDev ? "#00d2ff" : "#ff2a85",
-                  color: isDev ? "#080b0e" : "#ffffff"
-                }}
-              >
-                {isDev ? "Cambiar a Modo Rosa (Deodraus)" : "Cambiar a Modo Azul (Jerónimo)"}
-              </button>
-            </div>
           </div>
         </div>
       )}

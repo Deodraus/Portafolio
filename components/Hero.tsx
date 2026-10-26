@@ -1,119 +1,202 @@
 "use client";
 
-import Image from "next/image";
+import { useState, useEffect } from "react";
 import { portfolioData } from "@/data/portfolioData";
-import { ArrowRight, Sparkles, Terminal } from "lucide-react";
+import CodePortrait from "@/components/CodePortrait";
+import { Volume2, VolumeX } from "lucide-react";
 import {
-  TikTokIcon,
-  TwitchIcon,
-  KickIcon,
-  XIcon,
   InstagramIcon,
   GitHubIcon,
-  WhatsAppIcon
+  WhatsAppIcon,
+  XIcon,
 } from "@/components/SocialIcons";
 
-interface HeroProps {
-  currentPersona: "dev" | "creator";
-  setPersona: (persona: "dev" | "creator") => void;
-}
-
-export default function Hero({ currentPersona, setPersona }: HeroProps) {
-  const isDev = currentPersona === "dev";
+export default function Hero() {
   const { personal } = portfolioData;
+  const [isSpeaking, setIsSpeaking] = useState(false);
+  const [displayedRole, setDisplayedRole] = useState(personal.role);
 
-  const currentName = isDev ? personal.firstName : personal.artisticName;
-  const currentAvatar = isDev ? personal.avatarReal : personal.avatarArtistic;
-  const currentSocials = isDev ? personal.socials.dev : personal.socials.creator;
+  // Subtle typewriter effect for the role title
+  useEffect(() => {
+    const roles = [
+      "Desarrollador de Software",
+      "Frontend & Backend Developer",
+      "Desarrollador Full Stack",
+    ];
+    let roleIdx = 0;
+    let charIdx = roles[0].length;
+    let isDeleting = false;
+    let timeoutId: ReturnType<typeof setTimeout>;
+
+    const tick = () => {
+      const currentFullRole = roles[roleIdx];
+
+      if (!isDeleting) {
+        if (charIdx < currentFullRole.length) {
+          charIdx++;
+          setDisplayedRole(currentFullRole.slice(0, charIdx));
+          timeoutId = setTimeout(tick, 75);
+        } else {
+          timeoutId = setTimeout(() => {
+            isDeleting = true;
+            tick();
+          }, 3200);
+        }
+      } else {
+        if (charIdx > 0) {
+          charIdx--;
+          setDisplayedRole(currentFullRole.slice(0, charIdx));
+          timeoutId = setTimeout(tick, 40);
+        } else {
+          isDeleting = false;
+          roleIdx = (roleIdx + 1) % roles.length;
+          timeoutId = setTimeout(tick, 300);
+        }
+      }
+    };
+
+    timeoutId = setTimeout(() => {
+      isDeleting = true;
+      tick();
+    }, 3500);
+
+    return () => clearTimeout(timeoutId);
+  }, []);
+
+  // Voice narration toggle for the speaker button matching reference screenshot
+  const handleToggleSpeech = () => {
+    if (typeof window === "undefined" || !("speechSynthesis" in window)) return;
+
+    if (isSpeaking) {
+      window.speechSynthesis.cancel();
+      setIsSpeaking(false);
+      return;
+    }
+
+    window.speechSynthesis.cancel();
+    const utterance = new SpeechSynthesisUtterance(
+      `Hola, soy ${personal.fullName}, ${personal.role}. ${personal.summary}`
+    );
+    utterance.lang = "es-CO";
+    utterance.rate = 1.02;
+    utterance.onend = () => setIsSpeaking(false);
+    utterance.onerror = () => setIsSpeaking(false);
+
+    setIsSpeaking(true);
+    window.speechSynthesis.speak(utterance);
+  };
+
+  useEffect(() => {
+    return () => {
+      if (typeof window !== "undefined" && "speechSynthesis" in window) {
+        window.speechSynthesis.cancel();
+      }
+    };
+  }, []);
 
   const renderSocialIcon = (iconName: string) => {
     switch (iconName.toLowerCase()) {
-      case "twitch":
-        return <TwitchIcon className="h-5 w-5" />;
-      case "kick":
-        return <KickIcon className="h-5 w-5" />;
-      case "tiktok":
-        return <TikTokIcon className="h-5 w-5" />;
       case "instagram":
-        return <InstagramIcon className="h-5 w-5" />;
-      case "x":
-        return <XIcon className="h-4 w-4" />;
+        return <InstagramIcon className="h-4 w-4" />;
       case "github":
-        return <GitHubIcon className="h-5 w-5" />;
+        return <GitHubIcon className="h-4 w-4" />;
       case "whatsapp":
-        return <WhatsAppIcon className="h-5 w-5" />;
+        return <WhatsAppIcon className="h-4 w-4" />;
+      case "x":
+        return <XIcon className="h-3.5 w-3.5" />;
       default:
-        return <WhatsAppIcon className="h-5 w-5" />;
+        return <GitHubIcon className="h-4 w-4" />;
     }
   };
 
   return (
-    <section id="inicio" className="relative min-h-[calc(100vh-80px)] flex items-center justify-center py-12 md:py-20">
-      <div className="relative mx-auto max-w-7xl px-6 sm:px-10 w-full z-10">
-        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-16">
-          
-          {/* Left Column: Greeting, Bio, Socials, CTA */}
-          <div className="flex flex-col items-center text-center lg:items-start lg:text-left lg:col-span-7">
-            
-            {/* Top Demo Pills inspired by demostracion.png */}
-            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2 mb-4">
-              <span className="badge-pill-demo active">
-                <span className="h-2 w-2 rounded-full animate-ping" style={{ backgroundColor: "var(--neon-accent)" }} />
-                <span>Disponible para Proyectos</span>
+    <section
+      id="inicio"
+      className="relative min-h-[calc(100vh-96px)] flex items-center bg-black py-10 md:py-16"
+    >
+      <div className="mx-auto max-w-7xl px-6 sm:px-12 w-full">
+        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-8">
+          {/* Left Column: Exact layout from reference image */}
+          <div className="flex flex-col items-start text-left lg:col-span-7">
+            {/* Two-Line Heading: White greeting + Primary Blue First Name + Sky Cyan Last Name */}
+            <h1 className="text-4xl sm:text-6xl lg:text-[62px] font-extrabold tracking-tight leading-[1.12] text-white">
+              <span className="block">
+                Hola, soy{" "}
+                <span className="text-[#3b82f6] drop-shadow-[0_0_25px_rgba(59,130,246,0.35)]">
+                  {personal.firstName}
+                </span>
               </span>
-              <span className="badge-pill-demo">
-                <span>{isDev ? "Software Developer" : "Content Creator"}</span>
-              </span>
-              <span className="badge-pill-demo hidden sm:inline-flex">
-                <span>Medellín, Colombia</span>
-              </span>
-            </div>
-
-            {/* Main Greeting with dynamic neon glow */}
-            <h1 className="text-4xl font-extrabold tracking-tight text-white sm:text-6xl lg:text-7xl">
-              Hola, soy{" "}
-              <span className="text-neon-glow inline-block">
-                {currentName}
+              <span className="block mt-1 text-[#38bdf8] drop-shadow-[0_0_25px_rgba(56,189,248,0.3)]">
+                {personal.lastName}
               </span>
             </h1>
 
-            {/* Subtitle / Role in active theme color */}
-            <div className="mt-3 text-lg sm:text-2xl font-bold text-neon-accent flex items-center justify-center lg:justify-start gap-2">
-              <span>{isDev ? personal.roles.dev : personal.roles.creator}</span>
-              
-              <button
-                onClick={() => setPersona(isDev ? "creator" : "dev")}
-                className="inline-flex items-center gap-1.5 text-xs px-3 py-1 rounded-full border border-neon-subtle bg-neon-subtle text-slate-200 hover:text-white transition-all shadow-sm"
-                title="Alternar entre Modo Real (Azul) y Modo Creador (Rosa)"
+            {/* Subtitle / Role with Vertical Bar Cursor */}
+            <div className="mt-3 flex items-center text-xl sm:text-3xl font-extrabold text-[#3b82f6] min-h-[2.5rem]">
+              <span>{displayedRole}</span>
+              <span
+                className="ml-4 inline-block h-7 sm:h-8 w-[2px] bg-[#3b82f6] animate-cursor-blink"
+                aria-hidden="true"
+              />
+            </div>
+
+            {/* Bio Paragraph matching the compact quote paragraph in the reference */}
+            <p className="mt-5 max-w-xl text-xs sm:text-[13.5px] leading-[1.68] text-gray-200 font-normal">
+              {personal.heroQuote}
+            </p>
+
+            {/* Action Buttons Row + Speaker Icon matching reference */}
+            <div className="mt-8 flex flex-wrap items-center gap-4">
+              <a
+                href="#contacto"
+                className="btn-blue-solid px-8 py-3 text-sm sm:text-[15px] min-w-[140px] text-center"
               >
-                {isDev ? (
-                  <>
-                    <Sparkles className="h-3 w-3 text-[#ff2a85]" />
-                    <span>Ver en Rosa (Deodraus)</span>
-                  </>
+                Contrátame
+              </a>
+
+              <a
+                href="#educacion"
+                className="btn-blue-outline px-8 py-3 text-sm sm:text-[15px] min-w-[140px] text-center"
+              >
+                MI CV
+              </a>
+
+              <button
+                onClick={handleToggleSpeech}
+                type="button"
+                aria-label={
+                  isSpeaking
+                    ? "Detener lectura de voz"
+                    : "Escuchar presentación por voz"
+                }
+                title={
+                  isSpeaking
+                    ? "Silenciar presentación"
+                    : "Escuchar presentación de Jerónimo"
+                }
+                className={`p-2 rounded-full transition-colors cursor-pointer ${
+                  isSpeaking
+                    ? "text-[#38bdf8] bg-[#3b82f6]/15"
+                    : "text-white hover:text-[#38bdf8]"
+                }`}
+              >
+                {isSpeaking ? (
+                  <Volume2 className="h-5 w-5 animate-pulse" />
                 ) : (
-                  <>
-                    <Terminal className="h-3 w-3 text-[#00d2ff]" />
-                    <span>Ver en Azul (Jerónimo)</span>
-                  </>
+                  <VolumeX className="h-5 w-5" />
                 )}
               </button>
             </div>
 
-            {/* Bio text */}
-            <p className="mt-6 max-w-2xl text-base sm:text-lg leading-relaxed text-slate-300">
-              {isDev ? personal.summaryDev : personal.summaryCreator}
-            </p>
-
-            {/* Dynamic Social Icons Row matching DATOS.md and reference design */}
-            <div className="mt-8 flex flex-wrap items-center justify-center lg:justify-start gap-3">
-              {currentSocials.map((soc) => (
+            {/* Bottom-Left Circular Outlined Social Icons */}
+            <div className="mt-16 sm:mt-24 lg:mt-28 flex items-center gap-4">
+              {personal.socials.map((soc) => (
                 <a
                   key={soc.platform}
                   href={soc.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex h-11 w-11 items-center justify-center rounded-full border-2 border-neon-subtle bg-[#080b0e] text-neon-accent hover:bg-neon-subtle hover:scale-105 transition-all duration-300 shadow-sm"
+                  className="flex h-10 w-10 items-center justify-center rounded-full border border-[#3b82f6] bg-black text-[#3b82f6] hover:border-[#38bdf8] hover:bg-[#3b82f6] hover:text-black hover:shadow-[0_0_18px_rgba(59,130,246,0.65)] transition-all duration-300"
                   aria-label={soc.platform}
                   title={soc.platform}
                 >
@@ -121,66 +204,15 @@ export default function Hero({ currentPersona, setPersona }: HeroProps) {
                 </a>
               ))}
             </div>
-
-            {/* Glowing Pill Button matching reference screenshot */}
-            <div className="mt-8 flex items-center justify-center lg:justify-start">
-              <a
-                href="#contacto"
-                className="btn-neon-pill inline-flex items-center gap-2 rounded-full px-8 py-3.5 text-base font-bold shadow-lg"
-              >
-                <span>Contáctame</span>
-                <ArrowRight className="h-4 w-4" />
-              </a>
-            </div>
-
           </div>
 
-          {/* Right Column: Glowing Circular Avatar (Matches real photo in Blue, anime avatar in Pink) */}
-          <div className="flex flex-col items-center justify-center lg:col-span-5">
-            <div className="relative group">
-              
-              {/* External ambient glow aura reacting to theme */}
-              <div
-                className="absolute -inset-1.5 rounded-full opacity-70 blur-2xl transition-all duration-700 animate-pulse"
-                style={{
-                  backgroundColor: "var(--neon-accent)"
-                }}
-              />
-
-              {/* Circular Avatar Container with dynamic neon halo */}
-              <div className="relative h-64 w-64 sm:h-80 sm:w-80 md:h-96 md:w-96 rounded-full border-4 bg-[#080b0e] p-2 avatar-neon-halo overflow-hidden shadow-2xl transition-all duration-500">
-                <div className="relative h-full w-full rounded-full overflow-hidden bg-slate-900">
-                  <Image
-                    src={currentAvatar}
-                    alt={currentName}
-                    fill
-                    priority
-                    sizes="(max-width: 768px) 320px, 400px"
-                    className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
-                  />
-                </div>
-              </div>
-            </div>
-
-            {/* Helper toggle badge underneath avatar */}
-            <button
-              onClick={() => setPersona(isDev ? "creator" : "dev")}
-              className="mt-6 inline-flex items-center gap-2 rounded-full border border-neon-subtle bg-[#080b0e]/90 px-4 py-1.5 text-xs font-bold text-slate-200 hover:text-neon-accent transition-all shadow-md"
-            >
-              {isDev ? (
-                <>
-                  <Sparkles className="h-3.5 w-3.5 text-[#ff2a85]" />
-                  <span>Cambiar a Avatar Artístico & Paleta Rosa</span>
-                </>
-              ) : (
-                <>
-                  <Terminal className="h-3.5 w-3.5 text-[#00d2ff]" />
-                  <span>Cambiar a Foto Real & Paleta Azul</span>
-                </>
-              )}
-            </button>
+          {/* Right Column: Typographic Code Portrait emerging from Pure Black */}
+          <div className="flex items-center justify-center lg:col-span-5">
+            <CodePortrait
+              imageSrc={personal.avatarReal}
+              alt={personal.fullName}
+            />
           </div>
-
         </div>
       </div>
     </section>

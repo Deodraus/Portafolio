@@ -22,17 +22,13 @@ import {
   Monitor
 } from "lucide-react";
 
-interface DeviceMockupViewerProps {
-  currentPersona?: "dev" | "creator";
-}
-
-export default function DeviceMockupViewer({ currentPersona = "dev" }: DeviceMockupViewerProps) {
+export default function DeviceMockupViewer() {
   const [selectedProjectId, setSelectedProjectId] = useState<string>("vitline");
   const [selectedScreenshotIndex, setSelectedScreenshotIndex] = useState<number>(0);
   const [deviceMode, setDeviceMode] = useState<"laptop" | "browser" | "figma" | "mobile">("laptop");
   const [browserTheme, setBrowserTheme] = useState<"dark" | "light">("dark");
   const [showFigmaGrid, setShowFigmaGrid] = useState<boolean>(false);
-  const [bgAtmosphere, setBgAtmosphere] = useState<"obsidian" | "blue" | "pink" | "emerald">("obsidian");
+  const [bgAtmosphere, setBgAtmosphere] = useState<"obsidian" | "blue" | "cyan">("blue");
   const [modalOpen, setModalOpen] = useState<boolean>(false);
 
   const selectedProject =
@@ -79,15 +75,13 @@ export default function DeviceMockupViewer({ currentPersona = "dev" }: DeviceMoc
     }
   };
 
-  // Atmosphere glow color styles
+  // Atmosphere glow color styles (Blue palette only)
   const getAtmosphereGlow = () => {
     switch (bgAtmosphere) {
       case "blue":
-        return "radial-gradient(ellipse 65% 55% at 50% 45%, rgba(0, 210, 255, 0.22) 0%, transparent 70%)";
-      case "pink":
-        return "radial-gradient(ellipse 65% 55% at 50% 45%, rgba(255, 42, 133, 0.24) 0%, transparent 70%)";
-      case "emerald":
-        return "radial-gradient(ellipse 65% 55% at 50% 45%, rgba(16, 185, 129, 0.2) 0%, transparent 70%)";
+        return "radial-gradient(ellipse 65% 55% at 50% 45%, rgba(59, 130, 246, 0.24) 0%, transparent 70%)";
+      case "cyan":
+        return "radial-gradient(ellipse 65% 55% at 50% 45%, rgba(56, 189, 248, 0.22) 0%, transparent 70%)";
       default:
         return "radial-gradient(ellipse 65% 55% at 50% 45%, rgba(255, 255, 255, 0.08) 0%, transparent 70%)";
     }
@@ -183,23 +177,16 @@ export default function DeviceMockupViewer({ currentPersona = "dev" }: DeviceMoc
             />
             <button
               onClick={() => setBgAtmosphere("blue")}
-              title="Aura Azul Cyber (Modo Desarrollador)"
-              className={`h-5 w-5 rounded-full bg-[#00d2ff] transition-all cursor-pointer ${
-                bgAtmosphere === "blue" ? "ring-2 ring-white scale-110 shadow-[0_0_10px_#00d2ff]" : "opacity-60 hover:opacity-100"
+              title="Aura Azul Real"
+              className={`h-5 w-5 rounded-full bg-[#3b82f6] transition-all cursor-pointer ${
+                bgAtmosphere === "blue" ? "ring-2 ring-white scale-110 shadow-[0_0_10px_#3b82f6]" : "opacity-60 hover:opacity-100"
               }`}
             />
             <button
-              onClick={() => setBgAtmosphere("pink")}
-              title="Aura Rosa Sakura (Modo Creador)"
-              className={`h-5 w-5 rounded-full bg-[#ff2a85] transition-all cursor-pointer ${
-                bgAtmosphere === "pink" ? "ring-2 ring-white scale-110 shadow-[0_0_10px_#ff2a85]" : "opacity-60 hover:opacity-100"
-              }`}
-            />
-            <button
-              onClick={() => setBgAtmosphere("emerald")}
-              title="Aura Verde Neón (Figma Community)"
-              className={`h-5 w-5 rounded-full bg-[#10b981] transition-all cursor-pointer ${
-                bgAtmosphere === "emerald" ? "ring-2 ring-white scale-110 shadow-[0_0_10px_#10b981]" : "opacity-60 hover:opacity-100"
+              onClick={() => setBgAtmosphere("cyan")}
+              title="Aura Azul Cian"
+              className={`h-5 w-5 rounded-full bg-[#38bdf8] transition-all cursor-pointer ${
+                bgAtmosphere === "cyan" ? "ring-2 ring-white scale-110 shadow-[0_0_10px_#38bdf8]" : "opacity-60 hover:opacity-100"
               }`}
             />
           </div>

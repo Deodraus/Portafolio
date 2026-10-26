@@ -53,17 +53,18 @@ export default function ProjectsShowcase() {
   };
 
   return (
-    <section id="proyectos" className="py-20 md:py-28 relative z-10 border-t border-neon-subtle">
-      <div className="mx-auto max-w-7xl px-6 sm:px-10">
+    <section id="portafolio" className="py-20 md:py-28 relative z-10 border-t border-[#3b82f6]/20 bg-black">
+      <div id="proyectos" className="mx-auto max-w-7xl px-6 sm:px-12">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <div className="inline-flex items-center gap-2 rounded-full border border-neon-subtle bg-neon-subtle px-3.5 py-1 text-xs font-mono text-neon-accent mb-3">
+          <div className="inline-flex items-center gap-2 rounded-full border border-[#3b82f6]/35 bg-[#3b82f6]/10 px-3.5 py-1 text-xs font-mono text-[#38bdf8] mb-3">
             <FolderGit2 className="h-3.5 w-3.5" />
             Portafolio de Software & Proyectos
           </div>
           <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white">
-            Cosas que he <span className="text-neon-glow">construido</span>
+            Proyectos que he{" "}
+            <span className="text-[#3b82f6]">desarrollado</span>
           </h2>
           <p className="mt-3 text-base sm:text-lg text-slate-300">
             Explora mis proyectos dentro del estudio de maquetas interactivas: MacBook Pro, Ventana de Navegador Web (modo claro/oscuro) y Lienzo Adaptable Figma.

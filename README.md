@@ -1,6 +1,6 @@
-# Portafolio Profesional - Jerónimo Deossa Abad (Deodraus)
+# Portafolio Profesional - Jerónimo Deossa Abad
 
-Portafolio web moderno de alto rendimiento para **Jerónimo Deossa Abad** (*Deodraus*), Desarrollador de Software y Creador de Contenido en Medellín, Colombia.
+Portafolio web moderno de alto rendimiento para **Jerónimo Deossa Abad**, Desarrollador de Software en Medellín, Colombia.
 
 ---
 
@@ -9,13 +9,13 @@ Portafolio web moderno de alto rendimiento para **Jerónimo Deossa Abad** (*Deod
 ### Framework y Tecnologías Principales
 - **Framework:** [Next.js 16 (App Router)](https://nextjs.org/) con React 19 y compilador Turbopack.
 - **Lenguaje:** TypeScript 5 con tipado estricto en datos y componentes.
-- **Estilos:** Tailwind CSS v4 con arquitectura semántica, soporte dark-mode nativo y diseño responsivo móvil-primero (*Mobile First*).
-- **Iconografía:** `lucide-react` para iconos vectoriales limpios y accesibles.
-- **Gestión de Recursos:** Optimización de imágenes con el componente nativo `<Image />` de Next.js (`/public/img/photojeronimo.jpeg` y `/public/img/photodeodraus.jpeg`).
+- **Estilos:** Tailwind CSS v4 con arquitectura semántica en fondo negro puro (`#000000`), paleta de acentos azules (`#3b82f6` / `#38bdf8`) y diseño responsivo móvil-primero (*Mobile First*).
+- **Iconografía:** `lucide-react` y vectores SVG nativos optimizados.
+- **Gestión de Recursos:** Optimización de imágenes con `<Image />` de Next.js y renderizado dinámico en `<canvas>` para el retrato tipográfico en código (`/public/img/photojeronimo.jpeg`).
 
 ### Justificación de la Elección
 1. **Rendimiento Excepcional (SSG / Static Generation):** Next.js pre-renderiza las páginas de forma estática en tiempo de compilación (`○ Static`), garantizando tiempos de carga casi instantáneos y una puntuación máxima en métricas Core Web Vitals y Lighthouse.
-2. **Identidad Dual Reactiva:** La arquitectura con React 19 permite un manejo de estado fluido para alternar entre el perfil de **Ingeniería de Software** (Jerónimo) y el de **Creador de Contenido & Streamer** (Deodraus) sin recargas de página.
+2. **Identidad Profesional Única:** Enfoque centrado 100% en la identidad real de **Jerónimo Deossa Abad** como Desarrollador de Software, resaltando su formación técnica, proyectos reales y competencias de ingeniería.
 3. **Despliegue Nativo e Inmediato:** Totalmente compatible y optimizado para despliegue en un clic tanto en **Vercel** como en **Netlify**.
 
 ---
@@ -24,19 +24,16 @@ Portafolio web moderno de alto rendimiento para **Jerónimo Deossa Abad** (*Deod
 
 La interfaz está estructurada modularmente en `components/`:
 
-- **`Navbar.tsx`:** Barra de navegación superior fija (*sticky*) con efecto glassmorphism (`backdrop-blur`). Incluye enlaces suaves a cada sección, botón de menú móvil para teléfonos, conmutador de perspectiva Dev/Deodraus y botón directo a WhatsApp.
-- **`Hero.tsx`:** Sección de presentación de alto impacto. Integra el switch interactivo de identidad dual donde se contrastan la fotografía real y el avatar artístico 3D, badges de disponibilidad y ubicación, y accesos directos a proyectos y contacto.
-- **`AboutMe.tsx`:** Narra la trayectoria, historia y visión integral de Jerónimo, desglosando los 3 pilares profesionales: rigor técnico, comunicación empática y diseño visual/multimedia.
-- **`ExperienceEducation.tsx`:** Detalla el título oficial de *Técnico Laboral por Competencias como Asistente en Desarrollo de Software*, destacando los módulos de especialización (Frontend II, Backend II, Bases de Datos, Metodologías Ágiles).
-- **`ProjectsShowcase.tsx`:** Módulo interactivo con filtro por categorías y fichas expandibles para los 4 proyectos clave:
-  - **VitLine:** Plataforma web completa de reservas de aerolínea con pasarela VitCard y códigos QR en PHP/MariaDB.
-  - **MiAsistente:** Suite de escritorio en Python con IA Google Gemini, mascota interactiva con sprites animados y graficadora matemática.
-  - **ProyectMDIA:** Portal web interactivo de difusión para la Media Técnica de Medellín.
-  - **Semillero Quipux:** Experiencia formativa en metodologías ágiles, buenas prácticas y flujos GitHub.
-- **`SkillsSection.tsx`:** Visualización de habilidades técnicas estructuradas en 4 categorías (Frontend, Backend & Datos, Procesos/Ágiles, Creación Digital 3D/Anime/Video) y panel de habilidades blandas aplicadas a equipos.
-- **`HobbiesValue.tsx`:** Sección que conecta de manera argumentada y persuasiva cómo cada uno de los 8 hobbies aporta competencias esenciales a la ingeniería de software (disciplina, diseño UX, comunicación en vivo, adaptabilidad).
-- **`ContactSection.tsx`:** Centro de interacción con acceso directo a WhatsApp, botón de copia rápida de correo al portapapeles con confirmación visual, ubicación en Medellín y formulario generador de mensajes.
-- **`Footer.tsx`:** Cierre institucional con enlaces rápidos, créditos y stack tecnológico.
+- **`Navbar.tsx`:** Barra de navegación minimalista sobre fondo negro con emblema monograma vectorial `JDA` a la izquierda y enlaces limpios a la derecha (`Inicio`, `Sobre Mí`, `Educación`, `Habilidades`, `Portafolio`, `Hobbies`, `Contacto`) con detección automática de sección activa.
+- **`Hero.tsx`:** Sección principal basada en el diseño de referencia con paleta azul: saludo en dos líneas y dos tonos de azul (`Jerónimo` en `#3b82f6` y `Deossa Abad` en `#38bdf8`), subtítulo con efecto máquina de escribir y barra vertical `|`, cita descriptiva, botones rectangulares (`Contrátame` relleno y `MI CV` delineado), narrador de voz interactivo (`SpeechSynthesis`) e iconos sociales circulares delineados en la esquina inferior izquierda.
+- **`CodePortrait.tsx`:** Retrato de Jerónimo (`photojeronimo.jpeg`) procesado en HTML5 `<canvas>` que emerge de la oscuridad formado por líneas de código en tonos blanco/azul hielo, con opción para alternar a la fotografía original.
+- **`AboutMe.tsx`:** Narra la trayectoria, historia y visión profesional de Jerónimo como Desarrollador de Software en Medellín.
+- **`ExperienceEducation.tsx`:** Detalla el título oficial de *Técnico Laboral por Competencias como Asistente en Desarrollo de Software* y los módulos de especialización (Frontend II, Backend II, Bases de Datos, Metodologías Ágiles).
+- **`SkillsSection.tsx`:** Grid interactivo con los 16 lenguajes y tecnologías oficiales (SVGL), especialidades técnicas y habilidades blandas.
+- **`ProjectsShowcase.tsx` y `DeviceMockupViewer.tsx`:** Estudio interactivo de maquetas (Portátil MacBook, Ventana de Navegador Claro/Oscuro, Lienzo Figma y Vista Móvil) junto con fichas técnicas de `VitLine`, `ProyectMDIA`, `MiAsistente & Calculadora` y `Semillero Quipux`.
+- **`HobbiesValue.tsx`:** Muestra cómo cada uno de los 8 intereses personales aporta competencias clave al desarrollo de software.
+- **`ContactSection.tsx`:** Acceso directo a WhatsApp, copia rápida de correo electrónico al portapapeles, ubicación en Medellín y formulario de mensaje directo.
+- **`Footer.tsx`:** Cierre con enlaces rápidos, créditos y tecnologías empleadas.
 
 ---
 
@@ -51,7 +48,7 @@ La interfaz está estructurada modularmente en `components/`:
    - **Framework Preset:** `Next.js`
    - **Build Command:** `next build`
    - **Output Directory:** `.next`
-6. Haz clic en **Deploy**. El portafolio estará activo y con certificado SSL gratuito en menos de 2 minutos.
+6. Haz clic en **Deploy**.
 
 ### Opción B: Despliegue en Netlify
 1. Ingresa a [Netlify](https://www.netlify.com/) y conecta tu cuenta de **GitHub**.
